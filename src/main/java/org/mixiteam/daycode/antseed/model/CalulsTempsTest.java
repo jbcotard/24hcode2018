@@ -1,6 +1,7 @@
 package org.mixiteam.daycode.antseed.model;
 
 
+
 import org.junit.jupiter.api.Test;
 import org.mixiteam.daycode.antseed.Position;
 
