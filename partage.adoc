@@ -125,3 +125,17 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 function deg2rad(deg) {
   return deg * (Math.PI/180)
 }
+
+= Liste des tracks des autres équipes
+
+Réponse :
+[{
+   "_id": "5a6350688fb12f001481b340",
+   "name": "test",
+   "info": "ceci est un test",
+   "userId": "5a5e6f43734d1d3471851818",
+   "endSeedId": "5a5e7207734d1d347185195c",
+   "endDate": "2018-01-20T14:27:28.539Z",
+   "__v": 0,
+   "startDate": "2018-01-20T14:21:28.539Z"
+}]
