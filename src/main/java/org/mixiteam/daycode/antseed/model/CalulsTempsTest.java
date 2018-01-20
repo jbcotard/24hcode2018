@@ -21,13 +21,20 @@ public class CalulsTempsTest {
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 10, 10, 0));
 		*/
 
-		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(null, null);
+		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position( "47.99026", "0.23991", null), new Position( "47.99026", "0.23991", null), true);
 
     	for (int i=0;i<listePositionsTrajet.size();i++)
     	{
     		System.out.println(listePositionsTrajet.get(i).toString());
     	}
+    	
+    	System.out.println("RETOUR");
+    	listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position( "47.99026", "0.23991", null), new Position( "47.99026", "0.23991", null), false);
 
+    	for (int i=0;i<listePositionsTrajet.size();i++)
+    	{
+    		System.out.println(listePositionsTrajet.get(i).toString());
+    	}
 	}
 
 }

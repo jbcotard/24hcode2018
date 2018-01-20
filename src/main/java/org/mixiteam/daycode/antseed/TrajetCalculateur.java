@@ -12,7 +12,7 @@ import org.mixiteam.daycode.antseed.model.Vitesse_instantanee;
 public class TrajetCalculateur {
 
 
-    public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine) {
+    public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine, boolean trajetAller) {
 
         // definition zone à partir position graine
 
@@ -27,7 +27,7 @@ public class TrajetCalculateur {
 
 
         // creation des positions
-    	List<Node> liste = creerTrajet();
+    	List<Node> liste = creerTrajet(positionGraine, trajetAller);
     	List<Position> positions = creerPositions(liste);
 
 
@@ -42,7 +42,7 @@ public class TrajetCalculateur {
     	Instant base = Instant.now();;
     	base.plusSeconds(2);
     	List<Position> liste = new ArrayList<Position>();
-    	for (int i=0; i<listeNode.size() -1; i++)
+    	for (int i=0; i<listeNode.size() ; i++)
     	{
     		base = base.plusMillis(listeNode.get(i).getTempsPasse());
     		Position p = listeNode.get(i).getPosition();
@@ -53,15 +53,15 @@ public class TrajetCalculateur {
     	return liste;
     }
     
-    public static List<Node> creerTrajet()
+    public static List<Node> creerTrajet(Position positionGraine, boolean trajetAller)
     {
-    	List<Node> graine1Aller = recupererDonnees.graine1Aller();
+    	List<Node> graines = recupererDonnees.recuperer(positionGraine, trajetAller);
     	List<Node> liste = new ArrayList<Node>();
-    	
-    	for(int i=1; i<graine1Aller.size();i++)
+    	liste.add(graines.get(0));
+    	for(int i=1; i<graines.size();i++)
     	{
-    		Node noeud1 = graine1Aller.get(i-1);
-    		Node noeud2 = graine1Aller.get(i);
+    		Node noeud1 = graines.get(i-1);
+    		Node noeud2 = graines.get(i);
     		Vitesse_instantanee v = CalculsTemps.caluTemps(noeud1.getPosition(), noeud2.getPosition(), noeud1.getVitesse(), noeud1.getVitesse(), noeud2.getTempsAttente());
     		noeud2.setTempsPasse(v.getTemps());
     		liste.add(noeud2);

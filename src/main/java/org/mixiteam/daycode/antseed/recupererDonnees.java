@@ -6,6 +6,26 @@ import java.util.List;
 import org.mixiteam.daycode.antseed.model.Node;
 
 public class recupererDonnees {
+	
+	public static List<Node> recuperer(Position graine, boolean trajetAller)
+	{
+    	if (trajetAller)
+    	{
+    		List<Node> g1 = graine1Aller();
+    		if (graine.lat.equals(g1.get(g1.size()-1).getPosition().lat) && graine.lon.equals(g1.get(g1.size()-1).getPosition().lon))
+    		{
+    			return g1;
+    		}
+    	}else
+    	{
+    		List<Node> g1 = graine1Retour();
+    		if (graine.lat.equals(g1.get(0).getPosition().lat) && graine.lon.equals(g1.get(0).getPosition().lon))
+    		{
+    			return g1;
+    		}
+    	}
+    	return null;
+	}
 
 	public static List<Node> graine1Retour()
 	{
@@ -53,6 +73,7 @@ public class recupererDonnees {
 		liste.add(0,new Node(new Position("47.9893744","0.2411279", null), 0, 0, 48));
 		liste.add(0,new Node(new Position("47.9895798","0.2408946", null), 0, 0, 48));
 		liste.add(0,new Node(new Position("47.9900658","0.2402675", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.99026","0.23991", null), 0, 0, 48));
 		return liste;
 	}
 	
@@ -113,6 +134,7 @@ public class recupererDonnees {
 		liste.add(new Node(new Position("47.9893744","0.2411279", null), 0, 0, 48));
 		liste.add(new Node(new Position("47.9895798","0.2408946", null), 0, 0, 48));
 		liste.add(new Node(new Position("47.9900658","0.2402675", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.99026","0.23991", null), 0, 0, 48));
 		
 		return liste;
 	}

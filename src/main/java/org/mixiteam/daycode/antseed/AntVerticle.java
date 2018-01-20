@@ -35,15 +35,37 @@ public class AntVerticle extends AbstractVerticle {
         Position positionGraine = ServeurAntSeed.searchSeed(token, numeroGraine);
         System.out.println(positionGraine.toString());
 
-        /* calcul trajectoire */
+
+        /*  trajectoire  aller */
+
+        // calcul trajectoire aller
+        List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
+
+        // init trajectoire aller
+        Track trackAller = ServeurAntSeed.createTrack(token, positionFourmis, positionGraine, numeroFourmis);
+
+        // enregistrement position du track
+        String trackAllerId = trackAller.get_id();
+        ServeurAntSeed.bulkCreatePositions(token, trackAllerId, listePositionsTrajet);
+
+        // enregistrement final de la trajectoire aller
+        Track trackAllerFinal = ServeurAntSeed.endTrack(token, trackAllerId, numeroFourmis);
 
 
-        List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine);
+        /* trajectoire retour */
 
-    	for (int i=0;i<listePositionsTrajet.size();i++)
-    	{
-    		System.out.println(listePositionsTrajet.get(i).toString());
-    	}
+        // calcul trajectoire retour
+        List<Position> listePositionsTrajetRetour = TrajetCalculateur.calculerPositionsTrajet(positionGraine, positionFourmis,  false);
+
+        // init trajectoire aller
+        Track trackRetour = ServeurAntSeed.createTrack(token, positionGraine, positionFourmis,  numeroFourmis);
+
+        // enregistrement position du track
+        String trackRetourId = trackRetour.get_id();
+        ServeurAntSeed.bulkCreatePositions(token, trackRetourId, listePositionsTrajetRetour);
+
+        // enregistrement final de la trajectoire aller
+        Track trackRetourFinal = ServeurAntSeed.endTrack(token, trackRetourId, numeroFourmis);
 
     }
 }
