@@ -1,1 +1,12 @@
 ==== partage 
+
+== serveur 
+
+= recuperer le token pour la fourmi
+
+curl -d "email=ant1@violet.ant&password=prune" -X POST https://f24h2018.herokuapp.com/auth/local
+
+= recuperer le token pour la cigale
+
+curl -d "email=cicada@violet.ant&password=prune" -X POST https://f24h2018.herokuapp.com/auth/local
+
