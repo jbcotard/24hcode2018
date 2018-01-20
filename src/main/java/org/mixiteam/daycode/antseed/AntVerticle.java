@@ -15,9 +15,13 @@ public class AntVerticle extends AbstractVerticle {
 
 
 
+        int numeroGraine = 1;
+        int numeroFourmis = 1;
+
         System.out.println("Traitement ant ");
 
-        /* recuperation donnees graine */
+        /* recuperation data pour calcul trajectoire */
+
 
         // authent fourmis
         String token = ServeurAntSeed.auth("ant1@violet.ant", "Prune");
@@ -27,15 +31,41 @@ public class AntVerticle extends AbstractVerticle {
         Position positionFourmis = ServeurAntSeed.getUserMe(token);
         System.out.println(positionFourmis.toString());
 
+        // recuperation data graine
+        Position positionGraine = ServeurAntSeed.searchSeed(token, numeroGraine);
+        System.out.println(positionGraine.toString());
 
 
-        /* calcul trajectoire */
+        /*  trajectoire  aller */
+
+        // calcul trajectoire aller
+        List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
+
+        // init trajectoire aller
+        Track trackAller = ServeurAntSeed.createTrack(token, positionFourmis, positionGraine, numeroFourmis);
+
+        // enregistrement position du track
+        String trackAllerId = trackAller.get_id();
+        ServeurAntSeed.bulkCreatePositions(token, trackAllerId, listePositionsTrajet);
+
+        // enregistrement final de la trajectoire aller
+        Track trackAllerFinal = ServeurAntSeed.endTrack(token, trackAllerId, numeroFourmis);
 
 
-        Position positionGraine = null;
-        List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine);
+        /* trajectoire retour */
 
+        // calcul trajectoire retour
+        List<Position> listePositionsTrajetRetour = TrajetCalculateur.calculerPositionsTrajet(positionGraine, positionFourmis,  false);
 
+        // init trajectoire aller
+        Track trackRetour = ServeurAntSeed.createTrack(token, positionGraine, positionFourmis,  numeroFourmis);
+
+        // enregistrement position du track
+        String trackRetourId = trackRetour.get_id();
+        ServeurAntSeed.bulkCreatePositions(token, trackRetourId, listePositionsTrajetRetour);
+
+        // enregistrement final de la trajectoire aller
+        Track trackRetourFinal = ServeurAntSeed.endTrack(token, trackRetourId, numeroFourmis);
 
     }
 }
