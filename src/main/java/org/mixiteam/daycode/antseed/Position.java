@@ -21,18 +21,6 @@ public class Position {
     	this.lon = lo;
     }
 
-    public Position(String lat, String lon) {
-        this.lat = lat;
-        this.lon = lon;
-        this.timestamp = null;
-    }
-
-    public Position(String lat, String lon, ZonedDateTime timestamp) {
-        this.lat = lat;
-        this.lon = lon;
-        this.timestamp = timestamp;
-    }
-
     /*
     * // works with Instant
 Instant instant = Instant.now();
