@@ -1,7 +1,7 @@
 package org.mixiteam.daycode.antseed.model;
 
 import org.mixiteam.daycode.antseed.Position;
-
+// Commentaire
 public class Node
 {
     Position position;
