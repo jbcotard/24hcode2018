@@ -11,7 +11,7 @@ import org.mixiteam.daycode.antseed.model.Vitesse_instantanee;
 public class TrajetCalculateur {
 
 
-    public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine) {
+    public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine, boolean trajetAller) {
 
         // definition zone à partir position graine
 
