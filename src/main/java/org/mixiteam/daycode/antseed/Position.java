@@ -7,6 +7,19 @@ public class Position {
     String lat;
     String lon;
     ZonedDateTime timestamp;
+    
+    public Position(String la, String lo, ZonedDateTime t)
+    {
+    	this.lat = la;
+    	this.lon = lo;
+    	this.timestamp = t;
+    }
+    
+    public Position(String la, String lo)
+    {
+    	this.lat = la;
+    	this.lon = lo;
+    }
 
     /*
     * // works with Instant

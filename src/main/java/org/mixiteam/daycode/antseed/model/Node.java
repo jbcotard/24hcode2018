@@ -7,8 +7,8 @@ import org.mixiteam.daycode.antseed.Position;
 public class Node
 {
     Position position;
-    int temps_attente;
-    int temps_passe;
+    int temps_attente  = 0;
+    int temps_passe = 0;
     int vitesse;
 
     public Node(Position p, int ta, int tp, int v)
