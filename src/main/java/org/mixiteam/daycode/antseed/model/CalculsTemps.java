@@ -35,4 +35,25 @@ public class CalculsTemps {
 		return d;
 	}
 
+	
+	
+	
+	public static Vitesse_instantanee calculVitesseMoyenne(Position depart, Position arrivee, int duree) {
+
+		Vitesse_instantanee result = new Vitesse_instantanee();
+
+
+		double distance = getDistanceFromLatLonInKm(Double.valueOf(depart.getLat()), Double.valueOf(depart.getLon()),
+				Double.valueOf(arrivee.getLat()), Double.valueOf(arrivee.getLon()));
+		
+		System.out.println("distance: " +distance);
+		
+		Float vitesse = (float) (distance / duree*3600);
+
+		result.setTemps(0);
+		result.setVitesse(vitesse);
+
+		return result;
+
+	}
 }
