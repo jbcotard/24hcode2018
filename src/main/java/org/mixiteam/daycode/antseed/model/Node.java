@@ -4,7 +4,6 @@ package org.mixiteam.daycode.antseed.model;
 import org.mixiteam.daycode.antseed.Position;
 
 
-
 public class Node
 {
     Position position;
@@ -12,8 +11,12 @@ public class Node
     int temps_passe;
     int vitesse;
 
-    public Node()
+    public Node(Position p, int ta, int tp, int v)
     {
+    	this.position = p;
+    	this.temps_attente = ta;
+    	this.temps_passe = tp;
+    	this.vitesse = v;
     }
 
     public void setPosition(Position p)
