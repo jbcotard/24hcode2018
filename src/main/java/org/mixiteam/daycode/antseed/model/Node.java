@@ -17,6 +17,7 @@ public class Node
     public void setPosition(Position p)
     {
         this.position = p;
+        
     }
 
     public void setTempsAttente(int v)
