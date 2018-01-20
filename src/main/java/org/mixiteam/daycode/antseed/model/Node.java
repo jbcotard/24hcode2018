@@ -4,7 +4,6 @@ package org.mixiteam.daycode.antseed.model;
 import org.mixiteam.daycode.antseed.Position;
 
 
-
 public class Node
 {
     Position position;
