@@ -16,6 +16,11 @@ public class recupererDonnees {
     		{
     			return g1;
     		}
+    		List<Node> g2 = graine2Aller();
+    		if (graine.lat.equals(g2.get(g2.size()-1).getPosition().lat) && graine.lon.equals(g2.get(g2.size()-1).getPosition().lon))
+    		{
+    			return g2;
+    		}
     	}else
     	{
     		List<Node> g1 = graine1Retour();
@@ -23,10 +28,19 @@ public class recupererDonnees {
     		{
     			return g1;
     		}
+    		List<Node> g2 = graine2Retour();
+    		if (graine.lat.equals(g2.get(0).getPosition().lat) && graine.lon.equals(g2.get(0).getPosition().lon))
+    		{
+    			return g2;
+    		}
     	}
     	return null;
 	}
 
+	
+	
+	
+	
 	public static List<Node> graine1Retour()
 	{
 		List<Node> liste = new ArrayList<>();
@@ -139,5 +153,57 @@ public class recupererDonnees {
 		return liste;
 	}
 	
-
+	public static List<Node> graine2Aller()
+	{
+		List<Node> liste = new ArrayList<>();
+		liste.add(new Node(new Position("47.9844782", "0.2415538", null), 2, 0, 48));
+		liste.add(new Node(new Position("47.9844922", "0.241432", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9845824", "0.2407886", null), 0, 0, 48));// (retour arret)
+		liste.add(new Node(new Position("47.9846104", "0.2406362", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9847012", "0.2401415", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9847741", "0.2397382", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9849035", "0.2390012", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9849424", "0.2384647", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9849623", "0.2379394", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9849552", "0.2376945", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9849408", "0.2374676", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9849162", "0.2372807", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9848716", "0.2371191", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.984827", "0.2369644", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.984757", "0.2367817", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.984653", "0.2365735", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9840556", "0.2353772", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9839932", "0.2352522", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9838077", "0.2349042", null), 0, 0, 48));
+		liste.add(new Node(new Position("47.9827689", "0.2328369", null), 0, 0, 48));
+		return liste;
+	}
+	
+	public static List<Node> graine2Retour()
+	{
+		List<Node> liste = new ArrayList<>();
+		liste.add(0,new Node(new Position("47.9844782", "0.2415538", null), 2, 0, 48));
+		liste.add(0,new Node(new Position("47.9844922", "0.241432", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9845824", "0.2407886", null), 2, 0, 48));
+		liste.add(0,new Node(new Position("47.9846104", "0.2406362", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9847012", "0.2401415", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9847741", "0.2397382", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9849035", "0.2390012", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9849424", "0.2384647", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9849623", "0.2379394", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9849552", "0.2376945", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9849408", "0.2374676", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9849162", "0.2372807", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9848716", "0.2371191", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.984827", "0.2369644", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.984757", "0.2367817", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.984653", "0.2365735", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9840556", "0.2353772", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9839932", "0.2352522", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9838077", "0.2349042", null), 0, 0, 48));
+		liste.add(0,new Node(new Position("47.9827689", "0.2328369", null), 0, 0, 48));
+		return liste;
+	}
+	
+	
 }
