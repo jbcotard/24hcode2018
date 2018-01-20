@@ -16,10 +16,8 @@ public class CalculsTemps {
 
 		double distance = getDistanceFromLatLonInKm(Double.valueOf(depart.getLat()), Double.valueOf(depart.getLon()),
 				Double.valueOf(arrivee.getLat()), Double.valueOf(arrivee.getLon()));
-		System.out.println("distance "+distance);
-		Double val = (distance * 3600) / vitesse_max;
-
-		result.setTemps(val.intValue() + temps_attente_arrivee);
+		Double val = (distance * 3600) / vitesse_max * 1000;
+		result.setTemps(val.intValue() + temps_attente_arrivee*1000);
 		result.setVitesse(vitesse_max);
 
 		return result;

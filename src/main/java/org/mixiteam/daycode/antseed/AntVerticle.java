@@ -40,7 +40,10 @@ public class AntVerticle extends AbstractVerticle {
 
         List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine);
 
-
+    	for (int i=0;i<listePositionsTrajet.size();i++)
+    	{
+    		System.out.println(listePositionsTrajet.get(i).toString());
+    	}
 
     }
 }

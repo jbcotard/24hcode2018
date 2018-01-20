@@ -1,14 +1,15 @@
 package org.mixiteam.daycode.antseed;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 
 public class Position {
 
     String lat;
     String lon;
-    ZonedDateTime timestamp;
+    Instant timestamp;
     
-    public Position(String la, String lo, ZonedDateTime t)
+    public Position(String la, String lo, Instant t)
     {
     	this.lat = la;
     	this.lon = lo;
@@ -21,16 +22,14 @@ public class Position {
     	this.lon = lo;
     }
 
-    /*
-    * // works with Instant
-Instant instant = Instant.now();
-System.out.println(instant.format(DateTimeFormatter.ISO_INSTANT));
+    // works with Instant
+//Instant instant = Instant.now();
+//System.out.println(instant.format(DateTimeFormatter.ISO_INSTANT));
 
 // works with ZonedDateTime
-ZonedDateTime zdt = ZonedDateTime.now();
-System.out.println(zdt.format(DateTimeFormatter.ISO_INSTANT));
-    *
-    * */
+//ZonedDateTime zdt = ZonedDateTime.now();
+//System.out.println(zdt.format(DateTimeFormatter.ISO_INSTANT));
+
 
     public String getLat() {
         return lat;
@@ -40,7 +39,7 @@ System.out.println(zdt.format(DateTimeFormatter.ISO_INSTANT));
         return lon;
     }
 
-    public ZonedDateTime getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 

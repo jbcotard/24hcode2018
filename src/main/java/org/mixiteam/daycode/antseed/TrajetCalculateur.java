@@ -1,5 +1,6 @@
 package org.mixiteam.daycode.antseed;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,22 +28,23 @@ public class TrajetCalculateur {
 
         // creation des positions
     	List<Node> liste = creerTrajet();
+    	List<Position> positions = creerPositions(liste);
+
 
         // creation du parcours
 
 
-        return new ArrayList<Position>();
+        return positions;
     }
     
     public static List<Position> creerPositions(List<Node> listeNode)
     {
-    	ZonedDateTime base = ZonedDateTime.now();
+    	Instant base = Instant.now();;
     	base.plusSeconds(2);
     	List<Position> liste = new ArrayList<Position>();
     	for (int i=0; i<listeNode.size() -1; i++)
     	{
-    		base.plusSeconds(listeNode.get(i).getTempsPasse());
-    		base.plusSeconds(listeNode.get(i).getTempsAttente());
+    		base = base.plusMillis(listeNode.get(i).getTempsPasse());
     		Position p = listeNode.get(i).getPosition();
     		p.timestamp = base;
     		liste.add(p);
