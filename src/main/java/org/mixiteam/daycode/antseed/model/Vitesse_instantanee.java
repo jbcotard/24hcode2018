@@ -2,7 +2,8 @@ package org.mixiteam.daycode.antseed.model;
 
 public class Vitesse_instantanee {
 
-	
+	 
+
 	private int temps;
 	private float vitesse;
 	
