@@ -10,6 +10,75 @@ curl -d "email=ant1@violet.ant&password=Prune" -X POST https://f24h2018.herokuap
 
 curl -d "email=cicada@violet.ant&password=Prune" -X POST https://f24h2018.herokuapp.com/auth/local
 
+= recuperer les graines (exemple)
+Requête :
+GET https://f24h2018.herokuapp.com/api/Seeds/search HTTP/1.1
+Accept-Encoding: gzip,deflate
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1YTYzMjMyN2YzNmQyODcwODdhMTk2YWUiLCJyb2xlIjoiY2ljYWRhIiwiaWF0IjoxNTE2NDQ4NTU5LCJleHAiOjE1MTY0NjY1NTl9.vRC4yJZ_HmY-vrr5tFbgXvbh6tjuLIPtlOyzl1jwgZQ
+Host: f24h2018.herokuapp.com
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
+
+Réponse :
+[
+      {
+      "_id": "5a5e71a2734d1d347185192c",
+      "name": "La fourmilière",
+      "info": "Colonie",
+      "active": true,
+      "type": "seed",
+      "location":       {
+         "type": "Point",
+         "coordinates":          [
+            47.9844782,
+            0.2415538
+         ]
+      }
+   },
+      {
+      "_id": "5a5e7207734d1d347185195c",
+      "name": "Epau",
+      "info": "pas trop loin",
+      "active": true,
+      "type": "seed",
+      "location":       {
+         "type": "Point",
+         "coordinates":          [
+            47.99026,
+            0.23991
+         ]
+      }
+   },
+      {
+      "_id": "5a5e7228734d1d3471851968",
+      "name": "CFA",
+      "info": "pas trop loin",
+      "active": true,
+      "type": "seed",
+      "location":       {
+         "type": "Point",
+         "coordinates":          [
+            47.9827689,
+            0.2328369
+         ]
+      }
+   },
+      {
+      "_id": "5a5e71e2734d1d3471851942",
+      "name": "Les plaines de l'arche",
+      "info": "pas trop loin",
+      "active": true,
+      "type": "seed",
+      "location":       {
+         "type": "Point",
+         "coordinates":          [
+            47.987444,
+            0.253475
+         ]
+      }
+   }
+]
+
 == overpass
 
 
@@ -22,3 +91,4 @@ out;
 
 
 https://wiki.openstreetmap.org/wiki/Map_Features
+
