@@ -1,6 +1,8 @@
+
 package org.mixiteam.daycode.antseed.model;
 
 import org.mixiteam.daycode.antseed.Position;
+
 
 public class Node
 {
@@ -20,6 +22,7 @@ public class Node
     public void setPosition(Position p)
     {
         this.position = p;
+        
     }
 
     public void setTempsAttente(int v)
