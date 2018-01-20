@@ -15,9 +15,13 @@ public class AntVerticle extends AbstractVerticle {
 
 
 
+        int numeroGraine = 1;
+        int numeroFourmis = 1;
+
         System.out.println("Traitement ant ");
 
-        /* recuperation donnees graine */
+        /* recuperation data pour calcul trajectoire */
+
 
         // authent fourmis
         String token = ServeurAntSeed.auth("ant1@violet.ant", "Prune");
@@ -27,12 +31,13 @@ public class AntVerticle extends AbstractVerticle {
         Position positionFourmis = ServeurAntSeed.getUserMe(token);
         System.out.println(positionFourmis.toString());
 
-
+        // recuperation data graine
+        Position positionGraine = ServeurAntSeed.searchSeed(token, numeroGraine);
+        System.out.println(positionGraine.toString());
 
         /* calcul trajectoire */
 
 
-        Position positionGraine = null;
         List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine);
 
 

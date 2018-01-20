@@ -14,6 +14,7 @@ import java.util.Map;
 public class ServeurAntSeed {
 
     /**
+     * authentification d'un insecte.
      *
      * @param email
      * @param password
@@ -57,6 +58,13 @@ public class ServeurAntSeed {
     }
 
 
+    /**
+     * recuperation position insecte.
+     *
+     * @param token
+     * @return
+     * @throws IOException
+     */
     public static Position getUserMe(String token) throws IOException {
 
 
@@ -80,5 +88,39 @@ public class ServeurAntSeed {
         Position positionFourmis = new Position(fourmis.getLat(), fourmis.getLon());
 
         return positionFourmis;
+    }
+
+    /**
+     * recuperation position graine.
+     *
+     *
+     * @param token
+     * @param numeroGraine
+     * @return
+     */
+    public static Position searchSeed(String token, int numeroGraine) throws IOException {
+        URL urlClient = new URL("https://f24h2018.herokuapp.com/api/Seeds/search");
+
+
+        HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Authorization", "Bearer " + token);
+        conn.setDoOutput(true);
+
+        System.out.println("response : " + conn.getResponseCode());
+
+        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+        StringBuilder tokenBuilder = new StringBuilder();
+        for (int c; (c = in.read()) >= 0;)
+            tokenBuilder.append((char)c);
+
+        Seed[] listeSeed = Json.decodeValue(tokenBuilder.toString(), Seed[].class);
+        Seed seed = listeSeed[numeroGraine];
+        System.out.println(seed.toString());
+
+        Position positionSeed = new Position(seed.getLocation().getCoordinates()[0], seed.getLocation().getCoordinates()[1]);
+
+        return positionSeed;
     }
 }
