@@ -36,5 +36,7 @@ public class CalulsTempsTest {
     		System.out.println(listePositionsTrajet.get(i).toString());
     	}
 	}
+	
+	
 
 }
