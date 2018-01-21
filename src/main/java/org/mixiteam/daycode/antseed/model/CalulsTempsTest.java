@@ -2,6 +2,7 @@ package org.mixiteam.daycode.antseed.model;
 
 
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -21,20 +22,37 @@ public class CalulsTempsTest {
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 10, 10, 0));
 		*/
 
-		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
-
-    	for (int i=0;i<listePositionsTrajet.size();i++)
-    	{
-    		System.out.println(listePositionsTrajet.get(i).toString());
-    	}
-    	
-    	System.out.println("RETOUR");
-    	listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), false);
-
-    	for (int i=0;i<listePositionsTrajet.size();i++)
-    	{
-    		System.out.println(listePositionsTrajet.get(i).toString());
-    	}
+		/*List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
+*/
+		
+		Position positionFourmis = new Position("47.9843764", "0.2416894");
+		Position positionGraine = new Position("47.9878235", "0.2475570");
+		
+		//TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
+		try {
+			String s = GetOverPass.getWayOverPass(positionFourmis, positionGraine);
+			CalculTrajet.getNoeuds(s);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+//		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
+//
+//
+//    	for (int i=0;i<listePositionsTrajet.size();i++)
+//    	{
+//    		System.out.println(listePositionsTrajet.get(i).toString());
+//    	}
+//    	
+//    	System.out.println("RETOUR");
+//    	listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), false);
+//
+//    	for (int i=0;i<listePositionsTrajet.size();i++)
+//    	{
+//    		System.out.println(listePositionsTrajet.get(i).toString());
+//    	}
+		
 	}
 	
 	

@@ -11,6 +11,7 @@ import java.net.URL;
 
 public class GetOverPass {
 
+	
     /**
      * authentification d'un insecte.
      *
@@ -18,7 +19,7 @@ public class GetOverPass {
      * @param fin
      * @return
      */
-    public static String auth(Position debut, Position fin) throws IOException {
+    public static String getWayOverPass(Position debut, Position fin) throws IOException {
 
         //URL urlClient = new URL("http://http://overpass-turbo.eu/");
 
@@ -33,13 +34,12 @@ public class GetOverPass {
 
         String sud = Double.toString( Double.min(lat1, lat2));
         String est = Double.toString(Double.min(long1, long2));
+        
+        String position=sud+","+est+","+nord+","+ouest;
 
-        String url = "[out:json];way(47.9833,0.2316,47.9910,0.2514)[highway~\"^(motorway|residential|trunk|primary|secondary|tertiary|(motorway|trunk|primary|secondary|residential)_link)$\"];(._;>;);out;";
+        String url = "[out:json];way("+position+")[highway~\"^(motorway|residential|trunk|primary|secondary|tertiary|(motorway|trunk|primary|secondary|residential)_link)$\"];(._;>;);out;";
 
-
-
-        URL urlClient = new URL("http://http://overpass-turbo.eu?" + url );
-
+        URL urlClient = new URL("http://overpass-api.de/api/interpreter?" + url );
 
         HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
         conn.setRequestMethod("GET");
@@ -64,7 +64,7 @@ public class GetOverPass {
         Position arrivee=new Position( "47.99026", "0.23991", null);
 
         try {
-            System.out.printf("" +  GetOverPass.auth(depart, arrivee) );
+            System.out.printf("" +  GetOverPass.getWayOverPass(depart, arrivee) );
         } catch (IOException e) {
             e.printStackTrace();
         }
