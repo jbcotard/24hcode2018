@@ -5,9 +5,11 @@ import io.vertx.core.json.Json;
 
 import java.io.*;
 import java.net.*;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ServeurAntSeed {
 
@@ -96,7 +98,7 @@ public class ServeurAntSeed {
      * @param numeroGraine
      * @return
      */
-    public static Position searchSeed(String token, int numeroGraine) throws IOException {
+    public static List<Seed> searchSeed(String token, int numeroGraine) throws IOException {
         URL urlClient = new URL("https://f24h2018.herokuapp.com/api/Seeds/search");
 
 
@@ -114,31 +116,31 @@ public class ServeurAntSeed {
             tokenBuilder.append((char)c);
 
         Seed[] listeSeed = Json.decodeValue(tokenBuilder.toString(), Seed[].class);
-        Seed seed = listeSeed[numeroGraine];
-        System.out.println(seed.toString());
+        //Seed seed = listeSeed[numeroGraine];
+        //System.out.println(seed.toString());
 
-        Position positionSeed = new Position(seed.getLocation().getCoordinates()[0], seed.getLocation().getCoordinates()[1]);
+        //Position positionSeed = new Position(seed.getLocation().getCoordinates()[0], seed.getLocation().getCoordinates()[1]);
 
-        return positionSeed;
+        return Arrays.asList(listeSeed);
     }
 
     /**
      * creation d'un track.
      *
      * @param token
-     * @param positionFourmis
-     * @param positionGraine
+     * @param idSeedStart
+     * @param idSeedEnd
      * @param numeroFourmis
      * @return
      */
-    public static Track createTrack(String token, Position positionFourmis, Position positionGraine, int numeroFourmis) throws IOException {
+    public static Track createTrack(String token, String idSeedStart, String idSeedEnd, int numeroFourmis) throws IOException {
 
         URL urlClient = new URL("https://f24h2018.herokuapp.com/api/tracks");
         Map<String,Object> params = new LinkedHashMap<>();
         params.put("name", "violet " + numeroFourmis);
         params.put("info", "violet " + numeroFourmis);
-        params.put("startSeedId", positionFourmis);
-        params.put("endSeedId", positionGraine);
+        params.put("startSeedId", idSeedStart);
+        params.put("endSeedId", idSeedEnd);
         StringBuilder postData = new StringBuilder();
         for (Map.Entry<String,Object> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
@@ -178,10 +180,23 @@ public class ServeurAntSeed {
 
 
         URL urlClient = new URL("https://f24h2018.herokuapp.com/api/positions/bulk");
-        Map<String,Object> params = new LinkedHashMap<>();
-        params.put("trackId", trackId);
-        params.put("positions", listePositionsTrajet);
-        StringBuilder postData = new StringBuilder();
+        //Map<String,Object> params = new LinkedHashMap<>();
+        //params.put("trackId", trackId);
+
+
+        List<PositionWithFloat> listePositionsWithDouble = listePositionsTrajet.stream().map(p ->
+            new PositionWithFloat(p)
+        ).collect(Collectors.toList());
+
+        String arrayPositions = Json.encode(listePositionsWithDouble.toArray());
+
+        //params.put("positions", arrayPositions);
+
+        String json = "{\"trackId\":\"" + trackId + "\", \"positions\":" + arrayPositions + "}";
+
+
+
+        /*StringBuilder postData = new StringBuilder();
         for (Map.Entry<String,Object> param : params.entrySet()) {
             if (postData.length() != 0) postData.append('&');
             postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
@@ -189,16 +204,26 @@ public class ServeurAntSeed {
             postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
         }
         byte[] postDataBytes = postData.toString().getBytes("UTF-8");
-
+*/
         HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
         conn.setRequestMethod("POST");
-        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+        conn.setRequestProperty("Content-Type", "application/json");
+        //conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
         conn.setRequestProperty("Authorization", "Bearer " + token);
         conn.setDoOutput(true);
-        conn.getOutputStream().write(postDataBytes);
+        conn.setDoInput(true);
+        conn.setRequestMethod("POST");
 
-        System.out.println("response : " + conn.getResponseCode());
+        //conn.getOutputStream().write(json);
+        //Writer writer = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream(), "UTF-8"));
+        //writer.write(json);
+
+        OutputStream os = conn.getOutputStream();
+        os.write(json.getBytes("UTF-8"));
+        os.close();
+
+        System.out.println("# bulkCreatePositions : response : " + conn.getResponseCode());
+        System.out.println("# bulkCreatePositions : response : " + conn.getResponseMessage());
 
 
     }
@@ -227,7 +252,7 @@ public class ServeurAntSeed {
         byte[] postDataBytes = postData.toString().getBytes("UTF-8");
 
         HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
-        conn.setRequestMethod("POST");
+        conn.setRequestMethod("PUT");
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
         conn.setRequestProperty("Authorization", "Bearer " + token);
@@ -243,5 +268,33 @@ public class ServeurAntSeed {
             tokenBuilder.append((char)c);
 
         return Json.decodeValue(tokenBuilder.toString(), Track.class);
+    }
+
+    /**
+     * recuperation des tracks des autres teams.
+     *
+     * @param token
+     * @return
+     */
+    public static List<Track> getTracksOtherTeams(String token) throws IOException {
+
+        URL urlClient = new URL("https://f24h2018.herokuapp.com/api/tracks/otherTeams");
+
+
+        HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Authorization", "Bearer " + token);
+        conn.setDoOutput(true);
+
+        System.out.println("response : " + conn.getResponseCode());
+
+        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+        StringBuilder tokenBuilder = new StringBuilder();
+        for (int c; (c = in.read()) >= 0;)
+            tokenBuilder.append((char)c);
+
+        Track[] listeTrack = Json.decodeValue(tokenBuilder.toString(), Track[].class);
+        return Arrays.asList(listeTrack);
     }
 }

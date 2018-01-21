@@ -93,7 +93,7 @@ public class TrajetCalculateur {
     			}
     		}else
     		{
-    			//Si le temps est inférieur a 1s, on cumule jusqua trouver 1s
+    			//Si le temps est inferieur a 1s, on cumule jusqua trouver 1s
     			float tempsCumule = temps;
     			int index = i;
     			float lastTemps = 0;
