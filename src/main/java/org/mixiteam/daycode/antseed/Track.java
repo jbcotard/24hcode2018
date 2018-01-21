@@ -9,9 +9,11 @@ public class Track {
     String name;
     String info;
     String userId;
+    String startSeedId;
     String endSeedId;
     String __v;
     String startDate;
+    String endDate;
 
     public String get_id() {
         return _id;
@@ -29,6 +31,10 @@ public class Track {
         return userId;
     }
 
+    public String getStartSeedId() {
+        return startSeedId;
+    }
+
     public String getEndSeedId() {
         return endSeedId;
     }
@@ -41,6 +47,10 @@ public class Track {
         return startDate;
     }
 
+    public String getEndDate() {
+        return endDate;
+    }
+
     @Override
     public String toString() {
         return "Track{" +
@@ -48,9 +58,11 @@ public class Track {
                 ", name='" + name + '\'' +
                 ", info='" + info + '\'' +
                 ", userId='" + userId + '\'' +
+                ", startSeedId='" + startSeedId + '\'' +
                 ", endSeedId='" + endSeedId + '\'' +
                 ", __v='" + __v + '\'' +
-                ", startDate=" + startDate +
+                ", startDate='" + startDate + '\'' +
+                ", endDate='" + endDate + '\'' +
                 '}';
     }
 }

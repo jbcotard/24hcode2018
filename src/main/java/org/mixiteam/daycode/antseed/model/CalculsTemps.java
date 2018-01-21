@@ -38,7 +38,7 @@ public class CalculsTemps {
 	
 	
 	
-	public static Vitesse_instantanee calculVitesseMoyenne(Position depart, Position arrivee, int duree) {
+	public static Vitesse_instantanee calculVitesseMoyenne(Position depart, Position arrivee, long duree) {
 
 		Vitesse_instantanee result = new Vitesse_instantanee();
 

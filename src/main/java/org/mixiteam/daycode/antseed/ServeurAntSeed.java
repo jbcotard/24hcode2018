@@ -1,6 +1,5 @@
 package org.mixiteam.daycode.antseed;
 
-import io.vertx.core.http.HttpClient;
 import io.vertx.core.json.Json;
 
 import java.io.*;
@@ -95,10 +94,9 @@ public class ServeurAntSeed {
      *
      *
      * @param token
-     * @param numeroGraine
      * @return
      */
-    public static List<Seed> searchSeed(String token, int numeroGraine) throws IOException {
+    public static List<Seed> searchSeed(String token/*, int numeroGraine*/) throws IOException {
         URL urlClient = new URL("https://f24h2018.herokuapp.com/api/Seeds/search");
 
 
@@ -138,7 +136,8 @@ public class ServeurAntSeed {
         URL urlClient = new URL("https://f24h2018.herokuapp.com/api/tracks");
         Map<String,Object> params = new LinkedHashMap<>();
         params.put("name", "violet " + numeroFourmis);
-        params.put("info", "violet " + numeroFourmis);
+        params.put("info", "violet " + numeroFourmis + " startSeedId : "
+         + idSeedStart + " endSeedId : " + idSeedEnd);
         params.put("startSeedId", idSeedStart);
         params.put("endSeedId", idSeedEnd);
         StringBuilder postData = new StringBuilder();
@@ -286,7 +285,7 @@ public class ServeurAntSeed {
         conn.setRequestProperty("Authorization", "Bearer " + token);
         conn.setDoOutput(true);
 
-        System.out.println("response : " + conn.getResponseCode());
+        System.out.println(" # getTracksOtherTeams response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -296,5 +295,67 @@ public class ServeurAntSeed {
 
         Track[] listeTrack = Json.decodeValue(tokenBuilder.toString(), Track[].class);
         return Arrays.asList(listeTrack);
+    }
+
+    /**
+     * recuperation des positions d'un track.
+     * @param token
+     * @param trackId
+     */
+    public static List<Position> getPositionsOfTrack(String token, String trackId) throws IOException {
+        URL urlClient = new URL("https://f24h2018.herokuapp.com/api/tracks/" + trackId + "/positions");
+
+
+        HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Authorization", "Bearer " + token);
+        conn.setDoOutput(true);
+
+        System.out.println("# getPositionsOfTrack response : " + conn.getResponseCode());
+
+        Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+
+        StringBuilder tokenBuilder = new StringBuilder();
+        for (int c; (c = in.read()) >= 0;)
+            tokenBuilder.append((char)c);
+
+        Position[] listePosition = Json.decodeValue(tokenBuilder.toString(), Position[].class);
+        return Arrays.asList(listePosition);
+    }
+
+    /**
+     *
+     * @param token
+     * @param trackId
+     * @param positionId
+     */
+    public static void createCicadaAnalyse(String token, String trackId, String positionId) throws IOException {
+
+        URL urlClient = new URL("https://f24h2018.herokuapp.com/api/analyses");
+        Map<String,Object> params = new LinkedHashMap<>();
+        params.put("trackId", trackId);
+        params.put("positionId", positionId);
+        params.put("description", "depassement de vitesse  : > 50");
+
+        StringBuilder postData = new StringBuilder();
+        for (Map.Entry<String,Object> param : params.entrySet()) {
+            if (postData.length() != 0) postData.append('&');
+            postData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+            postData.append('=');
+            postData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+        }
+        byte[] postDataBytes = postData.toString().getBytes("UTF-8");
+
+        HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
+        conn.setRequestMethod("POST");
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setRequestProperty("Content-Length", String.valueOf(postDataBytes.length));
+        conn.setRequestProperty("Authorization", "Bearer " + token);
+        conn.setDoOutput(true);
+        conn.getOutputStream().write(postDataBytes);
+
+        System.out.println(" # createCicadaAnalyse response : " + conn.getResponseCode());
+
+
     }
 }
