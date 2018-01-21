@@ -1,5 +1,6 @@
 package org.mixiteam.daycode.antseed;
 
+import java.time.Instant;
 import java.time.ZonedDateTime;
 
 public class Track {
@@ -10,7 +11,7 @@ public class Track {
     String userId;
     String endSeedId;
     String __v;
-    ZonedDateTime startDate;
+    String startDate;
 
     public String get_id() {
         return _id;
@@ -36,7 +37,7 @@ public class Track {
         return __v;
     }
 
-    public ZonedDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 

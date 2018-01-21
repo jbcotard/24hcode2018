@@ -11,14 +11,13 @@ import java.util.List;
 
 public class AntVerticle extends AbstractVerticle {
     @Override
-    public void start(Future<Void> future) throws Exception {
-
+    public void start() throws Exception {
 
 
         int numeroGraine = 1;
         int numeroFourmis = 1;
 
-        System.out.println("Traitement ant ");
+        System.out.println("Traitement ant " + numeroFourmis);
 
         /* recuperation data pour calcul trajectoire */
 
@@ -32,7 +31,9 @@ public class AntVerticle extends AbstractVerticle {
         System.out.println(positionFourmis.toString());
 
         // recuperation data graine
-        Position positionGraine = ServeurAntSeed.searchSeed(token, numeroGraine);
+        List<Seed> listeSeeds = ServeurAntSeed.searchSeed(token, numeroGraine);
+        Seed seed = listeSeeds.get(1);
+        Position positionGraine = new Position(seed.getLocation().getCoordinates()[0], seed.getLocation().getCoordinates()[1]);
         System.out.println(positionGraine.toString());
 
 
@@ -42,7 +43,7 @@ public class AntVerticle extends AbstractVerticle {
         List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
 
         // init trajectoire aller
-        Track trackAller = ServeurAntSeed.createTrack(token, positionFourmis, positionGraine, numeroFourmis);
+        Track trackAller = ServeurAntSeed.createTrack(token, listeSeeds.get(0).get_id(), listeSeeds.get(1).get_id(), numeroFourmis);
 
         // enregistrement position du track
         String trackAllerId = trackAller.get_id();
@@ -55,10 +56,10 @@ public class AntVerticle extends AbstractVerticle {
         /* trajectoire retour */
 
         // calcul trajectoire retour
-        List<Position> listePositionsTrajetRetour = TrajetCalculateur.calculerPositionsTrajet(positionGraine, positionFourmis,  false);
+        List<Position> listePositionsTrajetRetour = TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine,  false);
 
         // init trajectoire aller
-        Track trackRetour = ServeurAntSeed.createTrack(token, positionGraine, positionFourmis,  numeroFourmis);
+        Track trackRetour = ServeurAntSeed.createTrack(token, listeSeeds.get(1).get_id(), listeSeeds.get(0).get_id(), numeroFourmis);
 
         // enregistrement position du track
         String trackRetourId = trackRetour.get_id();
