@@ -2,6 +2,9 @@
 
 == serveur 
 
+trackId aller : 5a63e436714db8001447afca
+trackId retour : 5a63e437714db8001447afdf
+
 = recuperer le token pour la fourmi
 
 curl -d "email=ant1@violet.ant&password=Prune" -X POST https://f24h2018.herokuapp.com/auth/local
