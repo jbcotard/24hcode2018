@@ -18,7 +18,6 @@ public class CalulsTempsTest {
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 50, 50, 0));
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 10, 10, 0));
 		*/
-<<<<<<< HEAD
 
 		/*List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
 =======

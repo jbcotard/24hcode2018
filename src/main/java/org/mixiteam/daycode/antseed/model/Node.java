@@ -3,10 +3,6 @@ package org.mixiteam.daycode.antseed.model;
 
 import org.mixiteam.daycode.antseed.Position;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 0c5dcd25b008cee92db646d119836a582e0d9405
 public class Node
 {
     Position position;
