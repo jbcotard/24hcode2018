@@ -1,14 +1,16 @@
 package org.mixiteam.daycode.antseed.model.json;
 
+import java.util.List;
+
 public class Routes {
 	
-	private Legs legs;
+	private List<Legs> legs;
 
-	public Legs getLegs() {
+	public List<Legs> getLegs() {
 		return legs;
 	}
 
-	public void setLegs(Legs legs) {
+	public void setLegs(List<Legs> legs) {
 		this.legs = legs;
 	}
 

@@ -6,6 +6,7 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.mixiteam.daycode.antseed.model.CalculTrajet;
 import org.mixiteam.daycode.antseed.model.CalculsTemps;
 import org.mixiteam.daycode.antseed.model.GetTrajetAPI;
 import org.mixiteam.daycode.antseed.model.Node;
@@ -18,8 +19,9 @@ public class TrajetCalculateur {
 
     	 // calcul du chemin a effectuer
     	try {
-			System.out.println(GetTrajetAPI.getTrajetLePlusCourt(positionFourmis,positionGraine));
-			
+    		String s = GetTrajetAPI.getTrajetLePlusCourt(positionFourmis,positionGraine);
+			System.out.println(s);
+			CalculTrajet.getTrajet(s);
 			
 			
 		} catch (IOException e) {
