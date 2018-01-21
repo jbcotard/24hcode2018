@@ -3,11 +3,15 @@ package org.mixiteam.daycode.antseed.model;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.mixiteam.daycode.antseed.model.json.Annotations;
+import org.mixiteam.daycode.antseed.model.json.Element;
 import org.mixiteam.daycode.antseed.model.json.Intersections;
 import org.mixiteam.daycode.antseed.model.json.Legs;
 import org.mixiteam.daycode.antseed.model.json.Localisation;
@@ -15,9 +19,44 @@ import org.mixiteam.daycode.antseed.model.json.Routes;
 import org.mixiteam.daycode.antseed.model.json.Steps;
 public class CalculTrajet {
 	
-	public static void getNoeuds(String s)
+	public static List<Element> getNoeuds(String s)
 	{
+		List<Element> elements = new ArrayList<Element>();
 		System.out.println(s);
+		JSONObject obj = new JSONObject(s);
+		JSONArray obj_elements =obj.getJSONArray("elements");
+		for(int i=0 ; i< obj_elements.length(); i++){
+			JSONObject obj4 = obj_elements.getJSONObject(i); 
+			Element e = new Element();
+			if (obj4.has("id")) e.setId(obj4.getInt("id"));
+			if (obj4.has("lat")) e.setLat(obj4.getDouble("lat"));
+			if (obj4.has("lon")) e.setLon(obj4.getDouble("lon"));
+			if (obj4.has("type")) e.setType(obj4.getString("type"));
+			if (obj4.has("nodes"))
+			{
+				List<String> list_nodes = new ArrayList<String>();
+				JSONArray obj_nodes =obj4.getJSONArray("nodes");
+				for(int j=0 ; j< obj_nodes.length(); j++){
+				
+					String obj_n = obj_nodes.get(j).toString();
+					list_nodes.add(obj_n);
+				}
+				e.setNodes(list_nodes);
+			}
+			if (obj4.has("tags"))
+			{
+				HashMap<String, String> map = new HashMap<String, String>();
+				Map<String,Object> obj_tags = obj4.getJSONObject("tags").toMap();
+				for(Map.Entry<String, Object> entry : obj_tags.entrySet()) {
+				    String key = entry.getKey();
+				    String value = entry.getValue().toString();
+				    map.put(key, value);
+				}
+				e.setTags(map);
+			}
+			elements.add(e);
+		}
+		return elements;
 	}
 
 	public static Routes getTrajet(String s)
