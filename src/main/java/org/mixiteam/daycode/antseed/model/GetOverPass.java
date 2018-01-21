@@ -38,8 +38,6 @@ public class GetOverPass {
 
         String url = "[out:json];way("+position+")[highway~\"^(motorway|residential|trunk|primary|secondary|tertiary|(motorway|trunk|primary|secondary|residential)_link)$\"];(._;>;);out;";
 
-System.out.println(url);
-
         URL urlClient = new URL("http://overpass-api.de/api/interpreter?" + url );
 
         HttpURLConnection conn = (HttpURLConnection) urlClient.openConnection();
