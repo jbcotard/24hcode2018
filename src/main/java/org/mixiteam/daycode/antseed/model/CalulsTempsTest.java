@@ -18,8 +18,20 @@ public class CalulsTempsTest {
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 50, 50, 0));
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 10, 10, 0));
 		*/
+<<<<<<< HEAD
 
 		/*List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
+=======
+	
+		
+		Position positionFourmis = new Position("47.9843764", "0.2416894");
+		Position positionGraine = new Position("47.9878235", "0.2475570");
+		
+		TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
+		
+		
+		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
+>>>>>>> 0c5dcd25b008cee92db646d119836a582e0d9405
 
     	for (int i=0;i<listePositionsTrajet.size();i++)
     	{
