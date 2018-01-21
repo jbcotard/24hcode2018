@@ -9,6 +9,7 @@ public class Node
     int temps_attente  = 0;
     int temps_passe = 0;
     int vitesse;
+    public String id;
 
     public Node(Position p, int ta, int tp, int v)
     {
