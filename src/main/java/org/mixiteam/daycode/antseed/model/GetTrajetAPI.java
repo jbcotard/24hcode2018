@@ -23,8 +23,8 @@ public class GetTrajetAPI {
 	 */
 	public static String getTrajetLePlusCourt(Position depart, Position arrivee) throws IOException {
 
-		String position = depart.getLon() + "," + depart.getLon() + ";" + arrivee.getLon() + "," + arrivee.getLat();
-		position="0.2416894,47.9843764;0.2475570,47.9878235";
+		String position = depart.getLon() + "," + depart.getLat() + ";" + arrivee.getLon() + "," + arrivee.getLat();
+		
 	    
 		URL urlClient = new URL("http://router.project-osrm.org/route/v1/driving/" + position
 				+ "?overview=full&steps=true&annotations=nodes");

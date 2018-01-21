@@ -21,20 +21,22 @@ import org.mixiteam.daycode.antseed.model.json.Routes;
 public class TrajetCalculateur {
 
 
-    public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine, boolean trajetAller) {
+    public static List<Position> calculerPositionsTrajet(Position positionDepart, Position positionArrive, boolean trajetAller) {
 
 		List<Node> listeNode = new ArrayList<Node>();
     	 // calcul du chemin a effectuer
     	try {
-    		String s = GetTrajetAPI.getTrajetLePlusCourt(positionFourmis,positionGraine);
+    		String s = GetTrajetAPI.getTrajetLePlusCourt(positionDepart,positionArrive);
 			
 			Routes route=CalculTrajet.getTrajet(s);
 			
-			String over = GetOverPass.getWayOverPass(positionFourmis,positionGraine);
+			String over = GetOverPass.getWayOverPass(positionDepart,positionArrive);
 			
 			HashMap<Long, Element> elements=CalculTrajet.getNoeuds(over);
 		
 			List<String> nodes = route.getLegs().get(0).getAnnotations().getNodes();
+			System.out.println(s);
+			System.out.println(over);
 			for(int i=0;i<nodes.size();i++)
 			{
 				String id=nodes.get(i);
@@ -86,7 +88,7 @@ public class TrajetCalculateur {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
+    
     	
     	//Création des durées
     	List<Node> liste = new ArrayList<Node>();

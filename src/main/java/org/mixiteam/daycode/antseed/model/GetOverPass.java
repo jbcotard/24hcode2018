@@ -57,16 +57,4 @@ public class GetOverPass {
         return tokenBuilder.toString();
     }
 
-
-    public static void main (String[] args){
-        Position depart=new Position("47.9844782", "0.2415538", null);
-
-        Position arrivee=new Position( "47.99026", "0.23991", null);
-
-        try {
-        	GetOverPass.getWayOverPass(depart, arrivee);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

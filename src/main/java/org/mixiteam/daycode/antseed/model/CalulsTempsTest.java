@@ -27,8 +27,8 @@ public class CalulsTempsTest {
 		
 		//Position positionFourmis = new Position("47.9843764", "0.2416894");
 		//Position positionGraine = new Position("47.9878235", "0.2475570");
-		Position positionFourmis = new Position("47.9843764", "0.2416894");
-		Position positionGraine = new Position("47.99026", "0.23991");
+		Position positionFourmis = new Position("47.9844782", "0.2415538");
+		Position positionGraine = new Position("47.987444", "0.253475");
 
 		TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
 //		try {
