@@ -5,7 +5,6 @@ import org.mixiteam.daycode.antseed.Position;
 
 
 
->>>>>>> d6c1fc86f6878ef6a12f7bd4d790a79d0d16eaab
 public class Node
 {
     Position position;
