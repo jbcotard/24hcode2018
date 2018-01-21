@@ -65,7 +65,7 @@ public class AntVerticle extends AbstractVerticle {
 
             /*  trajectoire  aller */
 
-            System.out.println(" ## fourmiliere >> graine " + numeroGraine + " [ " + seed.getName() + " ] ");
+            System.out.println(" @@@ Ant " + numeroFourmis + " ## fourmiliere >> graine " + numeroGraine + " [ " + seed.getName() + " ] ");
 
 
             // calcul trajectoire aller
@@ -86,7 +86,7 @@ public class AntVerticle extends AbstractVerticle {
 
             /* trajectoire retour */
 
-            System.out.println(" ##  graine >> fourmiliere " + listeSeeds.get(0).get_id() + " [ " + listeSeeds.get(0).getName() + " ] ");
+            System.out.println(" @@@ Ant " + numeroFourmis +" ##  graine " + numeroGraine + " >> fourmiliere " + listeSeeds.get(0).get_id() + " [ " + listeSeeds.get(0).getName() + " ] ");
 
 
             // calcul trajectoire retour
@@ -105,7 +105,7 @@ public class AntVerticle extends AbstractVerticle {
 
 
 // enregistrement pour derniere graine
-            if (i == listeSeeds.size() -1) {
+            //if (i == listeSeeds.size() -1) {
 
 
                 // Write a file
@@ -138,9 +138,9 @@ public class AntVerticle extends AbstractVerticle {
                 positionPrecedente = listePositionsTrajetRetour.get(ind);
             }*/
 
-                String arrayPositionsAller = Json.encode(listePositionsTrajet.toArray());
-                String arrayPositionsRetour = Json.encode(listePositionsTrajetRetour.toArray());
-
+            //    String arrayPositionsAller = Json.encode(listePositionsTrajet.toArray());
+              //  String arrayPositionsRetour = Json.encode(listePositionsTrajetRetour.toArray());
+/*
             Buffer buffer = Buffer.buffer("[ { \"aller\": " + arrayPositionsAller + ", \"retour\": " + arrayPositionsRetour  +  " } ] ");
             vertx.fileSystem().writeFile("target/classes/ant1.json", buffer, result -> {
                 if (result.succeeded()) {
@@ -164,7 +164,7 @@ public class AntVerticle extends AbstractVerticle {
                     System.err.println("Could not open file");
                 }
             });*/
-            }
+            //}*/
 
 
         }

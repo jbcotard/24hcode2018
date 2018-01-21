@@ -126,7 +126,7 @@ public class TrajetCalculateur {
 
         // creation des positions
     	List<Position> positions = creerPositions(liste);
-    	System.out.println(Json.encode(positions.toArray()));
+    	//System.out.println(Json.encode(positions.toArray()));
     	/*for (int i=0;i<positions.size();i++)
     	{
     		System.out.println(positions.get(i).toString());

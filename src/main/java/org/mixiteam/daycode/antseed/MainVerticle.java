@@ -11,6 +11,7 @@ import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.streams.Pump;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.StaticHandler;
+import io.vertx.ext.web.handler.TimeoutHandler;
 
 public class MainVerticle extends AbstractVerticle {
 
@@ -40,7 +41,10 @@ public class MainVerticle extends AbstractVerticle {
         // demarrage cigale
         vertx.deployVerticle(new CicadaVerticle());
 
+
+        /*
         Router router = Router.router(vertx);
+        //router.route().handler(TimeoutHandler.create(3000)); // 3 seconds
         router.route("/").handler(routingContext -> {
             HttpServerResponse response = routingContext.response();
             response
@@ -86,6 +90,6 @@ public class MainVerticle extends AbstractVerticle {
                         }
                 );
 
-
+*/
     }
 }
