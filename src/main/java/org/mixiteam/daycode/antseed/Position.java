@@ -81,6 +81,7 @@ public class Position {
                 ", timestamp=" + timestamp +
                 ", __v='" + __v + '\'' +
                 ", trackId='" + trackId + '\'' +
+                ", duree=" + duree +
                 '}';
     }
 }

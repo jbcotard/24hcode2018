@@ -43,7 +43,7 @@ public class ServeurAntSeed {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
-        System.out.println("response : " + conn.getResponseCode());
+        //System.out.println("response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -75,7 +75,7 @@ public class ServeurAntSeed {
         conn.setRequestProperty("Authorization", "Bearer " + token);
         conn.setDoOutput(true);
 
-        System.out.println("response : " + conn.getResponseCode());
+        //System.out.println("response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -105,7 +105,7 @@ public class ServeurAntSeed {
         conn.setRequestProperty("Authorization", "Bearer " + token);
         conn.setDoOutput(true);
 
-        System.out.println("response : " + conn.getResponseCode());
+        //System.out.println("response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -157,7 +157,7 @@ public class ServeurAntSeed {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
-        System.out.println("response : " + conn.getResponseCode());
+        //System.out.println("response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -221,8 +221,8 @@ public class ServeurAntSeed {
         os.write(json.getBytes("UTF-8"));
         os.close();
 
-        System.out.println("# bulkCreatePositions : response : " + conn.getResponseCode());
-        System.out.println("# bulkCreatePositions : response : " + conn.getResponseMessage());
+        //System.out.println("# bulkCreatePositions : response : " + conn.getResponseCode());
+        //System.out.println("# bulkCreatePositions : response : " + conn.getResponseMessage());
 
 
     }
@@ -258,7 +258,7 @@ public class ServeurAntSeed {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
-        System.out.println("response : " + conn.getResponseCode());
+        //System.out.println("response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -285,7 +285,7 @@ public class ServeurAntSeed {
         conn.setRequestProperty("Authorization", "Bearer " + token);
         conn.setDoOutput(true);
 
-        System.out.println(" # getTracksOtherTeams response : " + conn.getResponseCode());
+        //System.out.println(" # getTracksOtherTeams response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -311,7 +311,7 @@ public class ServeurAntSeed {
         conn.setRequestProperty("Authorization", "Bearer " + token);
         conn.setDoOutput(true);
 
-        System.out.println("# getPositionsOfTrack response : " + conn.getResponseCode());
+        //System.out.println("# getPositionsOfTrack response : " + conn.getResponseCode());
 
         Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 
@@ -354,7 +354,7 @@ public class ServeurAntSeed {
         conn.setDoOutput(true);
         conn.getOutputStream().write(postDataBytes);
 
-        System.out.println(" # createCicadaAnalyse response : " + conn.getResponseCode());
+        //System.out.println(" # createCicadaAnalyse response : " + conn.getResponseCode());
 
 
     }

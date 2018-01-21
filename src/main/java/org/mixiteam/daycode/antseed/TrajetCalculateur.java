@@ -100,7 +100,6 @@ public class TrajetCalculateur {
 				myNode.setVitesse(Integer.parseInt(vitesse));
 				myNode.setTempsAttente(temps_attente);
 				listeNode.add(myNode);
-				myNode.id = id;
 			}
 
 			
@@ -110,7 +109,7 @@ public class TrajetCalculateur {
 		}
     
     	
-    	//Création des durées
+    	//Crï¿½ation des durï¿½es
     	List<Node> liste = new ArrayList<Node>();
     	liste.add(listeNode.get(0));
     	for(int i=1; i<listeNode.size();i++)
@@ -125,10 +124,10 @@ public class TrajetCalculateur {
 
         // creation des positions
     	List<Position> positions = creerPositions(liste);
-    	for (int i=0;i<positions.size();i++)
+    	/*for (int i=0;i<positions.size();i++)
     	{
     		System.out.println(positions.get(i).toString());
-    	}
+    	}*/
 
         // creation du parcours
 
@@ -145,8 +144,9 @@ public class TrajetCalculateur {
     	{
     		base = base.plusMillis(listeNode.get(i).getTempsPasse());
     		Position p = listeNode.get(i).getPosition();
-    		p._id = listeNode.get(i).id;
-    		p.duree = listeNode.get(i).getTempsPasse();
+    		
+    		
+    		//System.out.println("{\n\t\"lat\" : "+p.lat+",\n\t\"lon\" : "+p.lon+",\n\t\"delai\" : "+listeNode.get(i).getTempsPasse()+"\n}");
     		p.timestamp = base;
     		liste.add(p);
     		
