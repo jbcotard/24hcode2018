@@ -16,7 +16,18 @@ public class TrajetCalculateur {
 
     public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine, boolean trajetAller) {
 
-       
+    	 // calcul du chemin a effectuer
+    	try {
+			System.out.println(GetTrajetAPI.getTrajetLePlusCourt(positionFourmis,positionGraine));
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
 
         // creation des positions
     	List<Node> liste = creerTrajet(positionGraine, trajetAller);
