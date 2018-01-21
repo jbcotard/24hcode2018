@@ -19,16 +19,18 @@ import org.mixiteam.daycode.antseed.model.json.Routes;
 import org.mixiteam.daycode.antseed.model.json.Steps;
 public class CalculTrajet {
 	
-	public static List<Element> getNoeuds(String s)
+	public static HashMap<Long, Element> getNoeuds(String s)
 	{
-		List<Element> elements = new ArrayList<Element>();
-		System.out.println(s);
+		HashMap<Long, Element> elements = new HashMap<Long, Element>();
 		JSONObject obj = new JSONObject(s);
 		JSONArray obj_elements =obj.getJSONArray("elements");
+		
 		for(int i=0 ; i< obj_elements.length(); i++){
 			JSONObject obj4 = obj_elements.getJSONObject(i); 
+			
 			Element e = new Element();
-			if (obj4.has("id")) e.setId(obj4.getInt("id"));
+			Long id = obj4.getLong("id");
+			e.setId(obj4.getLong("id"));
 			if (obj4.has("lat")) e.setLat(obj4.getDouble("lat"));
 			if (obj4.has("lon")) e.setLon(obj4.getDouble("lon"));
 			if (obj4.has("type")) e.setType(obj4.getString("type"));
@@ -54,7 +56,7 @@ public class CalculTrajet {
 				}
 				e.setTags(map);
 			}
-			elements.add(e);
+			elements.put(id, e);
 		}
 		return elements;
 	}
@@ -109,8 +111,6 @@ public class CalculTrajet {
 							listeInter.add(intersection);
 						}
 						step.setIntersections(listeInter);
-						Double obj_duration = (Double) obj6.get("duration");
-						step.setDuration(obj_duration);
 						steps.add(step);
 					}
 

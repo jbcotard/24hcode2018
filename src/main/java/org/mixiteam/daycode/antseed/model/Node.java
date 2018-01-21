@@ -18,7 +18,11 @@ public class Node
     	this.vitesse = v;
     }
 
-    public void setPosition(Position p)
+    public Node() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setPosition(Position p)
     {
         this.position = p;
         

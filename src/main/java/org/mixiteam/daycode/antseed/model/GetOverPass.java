@@ -23,18 +23,18 @@ public class GetOverPass {
 
         //URL urlClient = new URL("http://http://overpass-turbo.eu/");
 
+    	double delta=0.009;
         double lat1 = Double.valueOf( debut.getLat());
         double lat2 = Double.valueOf( fin.getLat());
 
         double long1 = Double.valueOf( debut.getLon());
         double long2 = Double.valueOf( fin.getLon());
 
-        String nord = Double.toString( Double.max(lat1, lat2));
-        String ouest = Double.toString(Double.max(long1, long2));
+        String nord = Double.toString( Double.max(lat1, lat2)+delta);
+        String ouest = Double.toString(Double.max(long1, long2)+delta);
 
-        String sud = Double.toString( Double.min(lat1, lat2));
-        String est = Double.toString(Double.min(long1, long2));
-        
+        String sud = Double.toString( Double.min(lat1, lat2)-delta);
+        String est = Double.toString(Double.min(long1, long2)-delta);
         String position=sud+","+est+","+nord+","+ouest;
 
         String url = "[out:json];way("+position+")[highway~\"^(motorway|residential|trunk|primary|secondary|tertiary|(motorway|trunk|primary|secondary|residential)_link)$\"];(._;>;);out;";
@@ -64,7 +64,7 @@ public class GetOverPass {
         Position arrivee=new Position( "47.99026", "0.23991", null);
 
         try {
-            System.out.printf("" +  GetOverPass.getWayOverPass(depart, arrivee) );
+        	GetOverPass.getWayOverPass(depart, arrivee);
         } catch (IOException e) {
             e.printStackTrace();
         }

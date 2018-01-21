@@ -4,25 +4,83 @@ import java.io.IOException;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import org.mixiteam.daycode.antseed.model.CalculTrajet;
 import org.mixiteam.daycode.antseed.model.CalculsTemps;
+import org.mixiteam.daycode.antseed.model.GetOverPass;
 import org.mixiteam.daycode.antseed.model.GetTrajetAPI;
 import org.mixiteam.daycode.antseed.model.Node;
 import org.mixiteam.daycode.antseed.model.Vitesse_instantanee;
+import org.mixiteam.daycode.antseed.model.json.Element;
+import org.mixiteam.daycode.antseed.model.json.Routes;
 
 public class TrajetCalculateur {
 
 
     public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine, boolean trajetAller) {
 
+		List<Node> listeNode = new ArrayList<Node>();
     	 // calcul du chemin a effectuer
     	try {
     		String s = GetTrajetAPI.getTrajetLePlusCourt(positionFourmis,positionGraine);
-			System.out.println(s);
-			CalculTrajet.getTrajet(s);
 			
+			Routes route=CalculTrajet.getTrajet(s);
+			
+			String over = GetOverPass.getWayOverPass(positionFourmis,positionGraine);
+			
+			HashMap<Long, Element> elements=CalculTrajet.getNoeuds(over);
+		
+			List<String> nodes = route.getLegs().get(0).getAnnotations().getNodes();
+			for(int i=0;i<nodes.size();i++)
+			{
+				String id=nodes.get(i);
+				Element node = elements.get(Long.valueOf(id));
+				Element way = null;
+				
+				for(Entry<Long, Element> entry : elements.entrySet()) 
+				{
+					Element tmp = entry.getValue();
+					if (tmp.getNodes() !=null)
+					{
+						List<String> listNodes = tmp.getNodes();
+						if (listNodes.toString().contains(id))
+						{
+							way = tmp;
+							break;
+						}
+					}
+				}
+				String vitesse = "50";
+				if (way != null && way.getTags() != null)
+				{
+					Map<String,String> tags = way.getTags();
+					String v = tags.get("maxspeed");
+					if (v != null && !v.equals(""))
+					{
+						vitesse = v;
+					}
+				}
+				int temps_attente = 0; 
+				if (node != null && node.getTags() != null)
+				{
+					Map<String,String> tags = node.getTags();
+					String t = tags.get("highway");
+					if (t != null && ( t.equals("traffic_signals") || t.equals("stop")))
+					{
+						temps_attente = 2;
+					}
+				}
+				Node myNode = new Node();
+				myNode.setPosition(new Position(Double.toString(node.getLat()), Double.toString(node.getLon())));
+				myNode.setVitesse(Integer.parseInt(vitesse));
+				myNode.setTempsAttente(temps_attente);
+				listeNode.add(myNode);
+			}
+
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -30,11 +88,25 @@ public class TrajetCalculateur {
 		}
     	
     	
+    	//Création des durées
+    	List<Node> liste = new ArrayList<Node>();
+    	liste.add(listeNode.get(0));
+    	for(int i=1; i<listeNode.size();i++)
+    	{
+    		Node noeud1 = listeNode.get(i-1);
+    		Node noeud2 = listeNode.get(i);
+    		Vitesse_instantanee v = CalculsTemps.caluTemps(noeud1.getPosition(), noeud2.getPosition(), noeud1.getVitesse(), noeud1.getVitesse(), noeud2.getTempsAttente());
+    		noeud2.setTempsPasse(v.getTemps());
+    		liste.add(noeud2);
+    	}
+
 
         // creation des positions
-    	List<Node> liste = creerTrajet(positionGraine, trajetAller);
     	List<Position> positions = creerPositions(liste);
-
+    	for (int i=0;i<positions.size();i++)
+    	{
+    		System.out.println(positions.get(i).toString());
+    	}
 
         // creation du parcours
 

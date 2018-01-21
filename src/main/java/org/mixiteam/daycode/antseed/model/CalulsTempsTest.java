@@ -25,17 +25,19 @@ public class CalulsTempsTest {
 		/*List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
 */
 		
+		//Position positionFourmis = new Position("47.9843764", "0.2416894");
+		//Position positionGraine = new Position("47.9878235", "0.2475570");
 		Position positionFourmis = new Position("47.9843764", "0.2416894");
-		Position positionGraine = new Position("47.9878235", "0.2475570");
-		
-		//TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
-		try {
-			String s = GetOverPass.getWayOverPass(positionFourmis, positionGraine);
-			CalculTrajet.getNoeuds(s);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Position positionGraine = new Position("47.99026", "0.23991");
+
+		TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
+//		try {
+//			String s = GetOverPass.getWayOverPass(positionFourmis, positionGraine);
+//			CalculTrajet.getNoeuds(s);
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 //		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
 //

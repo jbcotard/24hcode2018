@@ -6,7 +6,7 @@ import java.util.Map;
 public class Element {
 	
 	private String type;
-	private int id;
+	private Long id;
 	private double lat;
 	private double lon;
 	private List<String> nodes;
@@ -17,10 +17,10 @@ public class Element {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public double getLat() {
