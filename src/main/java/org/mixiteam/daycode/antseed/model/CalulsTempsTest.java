@@ -21,7 +21,7 @@ public class CalulsTempsTest {
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 10, 10, 0));
 		*/
 
-		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position( "47.99026", "0.23991", null), new Position( "47.99026", "0.23991", null), true);
+		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
 
     	for (int i=0;i<listePositionsTrajet.size();i++)
     	{
@@ -29,7 +29,7 @@ public class CalulsTempsTest {
     	}
     	
     	System.out.println("RETOUR");
-    	listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position( "47.99026", "0.23991", null), new Position( "47.99026", "0.23991", null), false);
+    	listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), false);
 
     	for (int i=0;i<listePositionsTrajet.size();i++)
     	{
