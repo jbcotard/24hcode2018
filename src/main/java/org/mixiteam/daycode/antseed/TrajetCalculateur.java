@@ -35,8 +35,7 @@ public class TrajetCalculateur {
 			HashMap<Long, Element> elements=CalculTrajet.getNoeuds(over);
 		
 			List<String> nodes = route.getLegs().get(0).getAnnotations().getNodes();
-			System.out.println(s);
-			System.out.println(over);
+
 			for(int i=0;i<nodes.size();i++)
 			{
 				String id=nodes.get(i);
@@ -145,8 +144,13 @@ public class TrajetCalculateur {
     	{
     		base = base.plusMillis(listeNode.get(i).getTempsPasse());
     		Position p = listeNode.get(i).getPosition();
+    		
+    		
+    		System.out.println("{\n\t\"lat\" : "+p.lat+",\n\t\"lon\" : "+p.lon+",\n\t\"delai\" : "+listeNode.get(i).getTempsPasse()+"\n}");
     		p.timestamp = base;
     		liste.add(p);
+    		
+    		
     	}
     	
     	return liste;

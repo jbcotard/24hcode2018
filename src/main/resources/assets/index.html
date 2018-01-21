@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>La Cigale et la fourmis</title>
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="leaflet.css" />
+
+<script type="text/javascript" src="leaflet.js"></script>
+<!-- <script type="text/javascript" src="mappy/L.Mappy.js"></script> -->
+<script type="text/javascript" defer src="ant.js"></script> 
+</head>
+<body>
+
+<div id="mapid" style="width: 100%; height: 500px;"></div>
+<table>
+<tr>
+<td>
+Long: <input type="text" id="longitude1" value="" maxlength="30" size="30">
+</td>
+<td>
+Lat: <input type="text" id="latitude1" value="" maxlength="30" size="30">
+</td>
+</tr>
+
+<tr>
+<td>
+Long: <input type="text" id="longitude2" value="" maxlength="30" size="30">
+</td>
+<td>
+Lat: <input type="text" id="latitude2" value="" maxlength="30" size="30">
+</td>
+</tr>
+</table>
+
+<button id="btn-etat" class="recommend" style="width:98%;" onclick="run();">Lancer</button>
+</body>
