@@ -56,7 +56,7 @@ public class TrajetCalculateur {
 						}
 					}
 				}
-				String vitesse = "50";
+				String vitesse = "48";
 				if (way != null && way.getTags() != null)
 				{
 					Map<String,String> tags = way.getTags();
@@ -64,6 +64,26 @@ public class TrajetCalculateur {
 					if (v != null && !v.equals(""))
 					{
 						vitesse = v;
+						if (v.equals("50"))
+						{
+
+							vitesse = "48";
+						}
+						if (v.equals("30"))
+						{
+
+							vitesse = "28";
+						}
+						if (v.equals("70"))
+						{
+
+							vitesse = "68";
+						}
+						if (v.equals("90"))
+						{
+
+							vitesse = "88";
+						}
 					}
 				}
 				int temps_attente = 0; 
