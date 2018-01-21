@@ -5,8 +5,6 @@ package org.mixiteam.daycode.antseed.model;
 import java.util.List;
 
 import org.junit.Test;
-import org.mixiteam.daycode.antseed.Position;
-import org.mixiteam.daycode.antseed.TrajetCalculateur;
 
 public class CalulsTempsTest {
 
@@ -21,7 +19,7 @@ public class CalulsTempsTest {
 		System.out.println(CalculsTemps.caluTemps(depart, arrivee, 10, 10, 0));
 		*/
 
-		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
+		/*List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
 
     	for (int i=0;i<listePositionsTrajet.size();i++)
     	{
@@ -34,7 +32,9 @@ public class CalulsTempsTest {
     	for (int i=0;i<listePositionsTrajet.size();i++)
     	{
     		System.out.println(listePositionsTrajet.get(i).toString());
-    	}
+    	}*/
+		
+		CalculTrajet.getTrajet();
 	}
 	
 	
