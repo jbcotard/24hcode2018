@@ -1,11 +1,13 @@
 package org.mixiteam.daycode.antseed;
 
+import java.io.IOException;
 import java.time.Instant;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.mixiteam.daycode.antseed.model.CalculsTemps;
+import org.mixiteam.daycode.antseed.model.GetTrajetAPI;
 import org.mixiteam.daycode.antseed.model.Node;
 import org.mixiteam.daycode.antseed.model.Vitesse_instantanee;
 
@@ -14,17 +16,7 @@ public class TrajetCalculateur {
 
     public static List<Position> calculerPositionsTrajet(Position positionFourmis, Position positionGraine, boolean trajetAller) {
 
-        // definition zone à partir position graine
-
-
-        // recuperation des zones
-
-
-        // calcul du graphe des prositions
-
-
-        // calcul de la ponderation des chemins
-
+       
 
         // creation des positions
     	List<Node> liste = creerTrajet(positionGraine, trajetAller);
