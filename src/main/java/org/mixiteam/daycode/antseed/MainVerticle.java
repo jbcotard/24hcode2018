@@ -2,10 +2,6 @@ package org.mixiteam.daycode.antseed;
 
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Vertx;
-import io.vertx.core.http.HttpClient;
-import io.vertx.core.http.HttpClientRequest;
-import io.vertx.ext.unit.Async;
-import org.mixiteam.daycode.antseed.AntVerticle;
 
 public class MainVerticle extends AbstractVerticle {
 
@@ -25,7 +21,7 @@ public class MainVerticle extends AbstractVerticle {
 		vertx.deployVerticle(new AntVerticle());
 
 		// demarrage cigale
-        //vertx.deployVerticle(new CicadaVerticle());
+        vertx.deployVerticle(new CicadaVerticle());
 
     }
 }
