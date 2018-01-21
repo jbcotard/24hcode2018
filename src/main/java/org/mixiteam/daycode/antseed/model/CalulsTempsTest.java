@@ -2,6 +2,7 @@ package org.mixiteam.daycode.antseed.model;
 
 
 
+import java.io.IOException;
 import java.util.List;
 
 import org.junit.Test;
@@ -27,8 +28,14 @@ public class CalulsTempsTest {
 		Position positionFourmis = new Position("47.9843764", "0.2416894");
 		Position positionGraine = new Position("47.9878235", "0.2475570");
 		
-		TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
-		
+		//TrajetCalculateur.calculerPositionsTrajet(positionFourmis, positionGraine, true);
+		try {
+			String s = GetOverPass.getWayOverPass(positionFourmis, positionGraine);
+			CalculTrajet.getNoeuds(s);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		List<Position> listePositionsTrajet = TrajetCalculateur.calculerPositionsTrajet(new Position("47.9827689", "0.2328369", null), new Position("47.9827689", "0.2328369", null), true);
 //
