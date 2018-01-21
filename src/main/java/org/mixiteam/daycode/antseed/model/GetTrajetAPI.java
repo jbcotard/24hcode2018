@@ -33,7 +33,7 @@ public class GetTrajetAPI {
 		conn.setRequestMethod("GET");
 		conn.setDoOutput(true);
 
-		System.out.println("response : " + conn.getResponseCode());
+		//System.out.println("response : " + conn.getResponseCode());
 
 		Reader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
 

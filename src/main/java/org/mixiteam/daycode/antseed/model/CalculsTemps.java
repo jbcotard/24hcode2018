@@ -46,7 +46,7 @@ public class CalculsTemps {
 		double distance = getDistanceFromLatLonInKm(Double.valueOf(depart.getLat()), Double.valueOf(depart.getLon()),
 				Double.valueOf(arrivee.getLat()), Double.valueOf(arrivee.getLon()));
 		
-		System.out.println("distance: " +distance);
+		//System.out.println("distance: " +distance);
 		
 		Float vitesse = (float) (distance / duree*3600);
 

@@ -36,21 +36,24 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                          <transformers>
-                              <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                  <manifestEntries>
-                                      <Main-Class>io.vertx.core.Launcher</Main-Class>
-                                      <Main-Verticle>org.mixiteam.daycode.antseed.MainVerticle</Main-Verticle>
-                                  </manifestEntries>
-                              </transformer>
-                              <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                  <resource>META-INF/services/io.vertx.core.spi.VerticleFactory</resource>
-                              </transformer>
-                          </transformers>
-                          <artifactSet>
-                          </artifactSet>
-                          <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar</outputFile>
-                      </configuration>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <manifestEntries>
+                                        <Main-Class>io.vertx.core.Launcher</Main-Class>
+                                        <Main-Verticle>org.mixiteam.daycode.antseed.MainVerticle</Main-Verticle>
+                                    </manifestEntries>
+                                </transformer>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                                    <resource>META-INF/services/io.vertx.core.spi.VerticleFactory</resource>
+                                </transformer>
+                            </transformers>
+                            <artifactSet>
+                            </artifactSet>
+                            <outputFile>${project.build.directory}/${project.artifactId}-${project.version}-fat.jar
+                            </outputFile>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
@@ -72,28 +75,34 @@
     </build>
 
     <dependencies>
-        
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-core</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
-        
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-unit</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-unit</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
-	<dependency>
-    <groupId>org.json</groupId>
-    <artifactId>json</artifactId>
-    <version>20171018</version>
-</dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20171018</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-web</artifactId>
+            <version>${vertx.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

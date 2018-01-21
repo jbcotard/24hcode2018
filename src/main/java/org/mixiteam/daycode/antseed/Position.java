@@ -14,6 +14,7 @@ public class Position {
     Instant timestamp;
     String __v;
     String trackId;
+    int duree;
     
     public Position(String la, String lo, Instant t)
     {
@@ -70,8 +71,18 @@ public class Position {
     public String getTrackId() {
         return trackId;
     }
+    
+    
 
-    @Override
+    public int getDuree() {
+		return duree;
+	}
+
+	public void setDuree(int duree) {
+		this.duree = duree;
+	}
+
+	@Override
     public String toString() {
         return "Position{" +
                 "_id='" + _id + '\'' +
@@ -80,6 +91,7 @@ public class Position {
                 ", timestamp=" + timestamp +
                 ", __v='" + __v + '\'' +
                 ", trackId='" + trackId + '\'' +
+                ", duree=" + duree +
                 '}';
     }
 }

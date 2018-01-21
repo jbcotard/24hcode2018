@@ -18,6 +18,8 @@ import org.mixiteam.daycode.antseed.model.Vitesse_instantanee;
 import org.mixiteam.daycode.antseed.model.json.Element;
 import org.mixiteam.daycode.antseed.model.json.Routes;
 
+import io.vertx.core.json.Json;
+
 public class TrajetCalculateur {
 
 
@@ -109,7 +111,7 @@ public class TrajetCalculateur {
 		}
     
     	
-    	//Création des durées
+    	//Crï¿½ation des durï¿½es
     	List<Node> liste = new ArrayList<Node>();
     	liste.add(listeNode.get(0));
     	for(int i=1; i<listeNode.size();i++)
@@ -124,10 +126,11 @@ public class TrajetCalculateur {
 
         // creation des positions
     	List<Position> positions = creerPositions(liste);
-    	for (int i=0;i<positions.size();i++)
+    	//System.out.println(Json.encode(positions.toArray()));
+    	/*for (int i=0;i<positions.size();i++)
     	{
     		System.out.println(positions.get(i).toString());
-    	}
+    	}*/
 
         // creation du parcours
 
@@ -144,9 +147,9 @@ public class TrajetCalculateur {
     	{
     		base = base.plusMillis(listeNode.get(i).getTempsPasse());
     		Position p = listeNode.get(i).getPosition();
+    		p.setDuree(listeNode.get(i).getTempsPasse());
     		
-    		
-    		System.out.println("{\n\t\"lat\" : "+p.lat+",\n\t\"lon\" : "+p.lon+",\n\t\"delai\" : "+listeNode.get(i).getTempsPasse()+"\n}");
+    		//System.out.println("{\n\t\"lat\" : "+p.lat+",\n\t\"lon\" : "+p.lon+",\n\t\"delai\" : "+listeNode.get(i).getTempsPasse()+"\n}");
     		p.timestamp = base;
     		liste.add(p);
     		
