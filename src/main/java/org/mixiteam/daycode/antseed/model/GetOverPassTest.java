@@ -9,12 +9,11 @@ public class GetOverPassTest {
 
     @Test
     public void test() {
-       Position depart=new Position("47.9844782", "0.2415538", null);
-
-		Position arrivee=new Position( "47.99026", "0.23991", null);
-
+    	Position positionFourmis = new Position("47.9843764", "0.2416894");
+		Position positionGraine = new Position("47.9878235", "0.2475570");
+		
         try {
-            System.out.printf("" +  GetOverPass.auth(depart, arrivee) );
+            System.out.printf("" +  GetOverPass.getWayOverPass(positionFourmis, positionGraine) );
         } catch (IOException e) {
             e.printStackTrace();
         }

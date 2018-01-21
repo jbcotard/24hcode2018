@@ -11,6 +11,7 @@ import java.net.URL;
 
 public class GetOverPass {
 
+	
     /**
      * authentification d'un insecte.
      *
@@ -18,7 +19,7 @@ public class GetOverPass {
      * @param fin
      * @return
      */
-    public static String auth(Position debut, Position fin) throws IOException {
+    public static String getWayOverPass(Position debut, Position fin) throws IOException {
 
         //URL urlClient = new URL("http://http://overpass-turbo.eu/");
 
@@ -63,7 +64,7 @@ public class GetOverPass {
         Position arrivee=new Position( "47.99026", "0.23991", null);
 
         try {
-            System.out.printf("" +  GetOverPass.auth(depart, arrivee) );
+            System.out.printf("" +  GetOverPass.getWayOverPass(depart, arrivee) );
         } catch (IOException e) {
             e.printStackTrace();
         }
