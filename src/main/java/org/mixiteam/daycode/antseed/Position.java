@@ -14,6 +14,7 @@ public class Position {
     Instant timestamp;
     String __v;
     String trackId;
+    int duree;
     
     public Position(String la, String lo, Instant t)
     {

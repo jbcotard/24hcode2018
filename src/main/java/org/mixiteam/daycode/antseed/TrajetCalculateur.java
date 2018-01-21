@@ -100,6 +100,7 @@ public class TrajetCalculateur {
 				myNode.setVitesse(Integer.parseInt(vitesse));
 				myNode.setTempsAttente(temps_attente);
 				listeNode.add(myNode);
+				myNode.id = id;
 			}
 
 			
@@ -144,9 +145,8 @@ public class TrajetCalculateur {
     	{
     		base = base.plusMillis(listeNode.get(i).getTempsPasse());
     		Position p = listeNode.get(i).getPosition();
-    		
-    		
-    		System.out.println("{\n\t\"lat\" : "+p.lat+",\n\t\"lon\" : "+p.lon+",\n\t\"delai\" : "+listeNode.get(i).getTempsPasse()+"\n}");
+    		p._id = listeNode.get(i).id;
+    		p.duree = listeNode.get(i).getTempsPasse();
     		p.timestamp = base;
     		liste.add(p);
     		
